@@ -10,5 +10,17 @@
 
 ## Скриншоты
 
-![Screenshot_2025_10_07_00_43_58_027_ru_alexeypostnov_calculator](https://github.com/user-attachments/assets/5ac2e258-2980-4a4e-8455-f79669fc733f)
-![Screenshot_2025_10_07_00_44_03_973_ru_alexeypostnov_calculator](https://github.com/user-attachments/assets/6d2e5e7f-7631-4b52-ad3c-a55e0e0e5233)
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/5ac2e258-2980-4a4e-8455-f79669fc733f" width="200" alt="Светлая тема"/><br/>
+        <sub>Светлая тема</sub>
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/6d2e5e7f-7631-4b52-ad3c-a55e0e0e5233" width="200" alt="Темная тема"/><br/>
+        <sub>Темная тема</sub>
+      </td>
+    </tr>
+  </table>
+</div>
