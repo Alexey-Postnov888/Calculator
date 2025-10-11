@@ -34,17 +34,17 @@
         style="@style/CalcButton.Function" />
 
     <Button
-        android:id="@+id/percentBtn"
-        android:tag="operator"
+        android:id="@+id/parenthesisBtn"
+        android:tag="parenthesis"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="%"
+        android:text="( )"
         app:layout_column="2"
         app:layout_row="0"
         app:layout_columnWeight="1"
         app:layout_rowWeight="1"
         android:layout_margin="4dp"
-        style="@style/CalcButton.Function"/>
+        style="@style/CalcButton.Operator"/>
 
     <Button
         android:id="@+id/divisionBtn"
@@ -226,8 +226,8 @@
         android:layout_height="0dp"
         android:text="0"
         app:layout_column="0"
-        app:layout_row="4"
         app:layout_columnSpan="2"
+        app:layout_row="4"
         app:layout_columnWeight="1"
         app:layout_rowWeight="1"
         android:layout_margin="4dp"

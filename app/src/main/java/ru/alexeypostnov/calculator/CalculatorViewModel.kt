@@ -22,7 +22,9 @@ class CalculatorViewModel : ViewModel() {
         MINUS,
         MULTIPLY,
         DIVIDE,
-        SEPARATOR
+        SEPARATOR,
+        OPEN_BRACKET,
+        CLOSE_BRACKET
     }
 
     private val operators = mapOf(
@@ -31,10 +33,15 @@ class CalculatorViewModel : ViewModel() {
         OperatorType.MULTIPLY to OperatorInfo("×", "*"),
         OperatorType.DIVIDE to OperatorInfo("/", "/"),
         OperatorType.SEPARATOR to OperatorInfo(".", "."),
+        OperatorType.OPEN_BRACKET to OperatorInfo("(", "("),
+        OperatorType.CLOSE_BRACKET to OperatorInfo(")", ")")
     )
 
     private val allDisplaySymbols by lazy {
-        operators.values.map { it.displaySymbol }.toSet()
+        val openBracket = operators[OperatorType.OPEN_BRACKET]?.computationSymbol
+        val closeBracket = operators[OperatorType.CLOSE_BRACKET]?.computationSymbol
+
+        operators.values.map { it.displaySymbol }.toSet().filter { it != openBracket && it != closeBracket }
     }
 
     private fun findOperatorTypeByDisplaySymbol(displaySymbol: String): OperatorType? {
@@ -99,6 +106,36 @@ class CalculatorViewModel : ViewModel() {
             currentInput.deleteAt(currentInput.length - 1)
             _displayText.value = if (currentInput.isEmpty()) "0" else currentInput.toString()
         }
+    }
+
+    private fun String.isOperator(): Boolean {
+        val operatorType = findOperatorTypeByDisplaySymbol(this)
+        return operatorType != null && operatorType != OperatorType.OPEN_BRACKET && operatorType != OperatorType.CLOSE_BRACKET
+    }
+
+    fun onParenthesisOnClick() {
+        val openBracket = operators[OperatorType.OPEN_BRACKET]?.computationSymbol
+        val closeBracket = operators[OperatorType.CLOSE_BRACKET]?.computationSymbol
+        val lastSymbol = if (currentInput.isNotEmpty()) currentInput[currentInput.length - 1].toString() else ""
+
+        val openBracketsCount = currentInput.count { it.toString() == openBracket }
+        val closeBracketsCount = currentInput.count { it.toString() == closeBracket }
+
+        if (lastSymbol == closeBracket) {
+            if (openBracketsCount > closeBracketsCount) {
+                currentInput.append(closeBracket)
+            }
+        }
+
+        else if (currentInput.isEmpty() || lastSymbol.isOperator() || lastSymbol == openBracket) {
+            currentInput.append(openBracket)
+        }
+
+        else if (openBracketsCount > closeBracketsCount) {
+            currentInput.append(closeBracket)
+        }
+
+        _displayText.value = currentInput.toString()
     }
 
     fun calculate() {

@@ -50,6 +50,7 @@ class ButtonsFragment : Fragment() {
             "number" -> viewModel.onNumberClick(button.text.toString())
             "operator" -> viewModel.onOperatorClick(button.text.toString())
             "function" -> handleFunctionClick(button.id)
+            "parenthesis" -> viewModel.onParenthesisOnClick()
         }
     }
 
