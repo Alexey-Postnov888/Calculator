@@ -31,4 +31,4 @@
 
 ## Скачать
 
-https://github.com/Alexey-Postnov888/Calculator/releases/tag/1.0.0
+https://github.com/Alexey-Postnov888/Calculator/releases/
