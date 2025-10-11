@@ -6,7 +6,7 @@
 
 - Базовый калькулятор
 - Materal Design 3
-- Динамические цветв
+- Динамические цвета
 
 ## Скриншоты
 
@@ -28,3 +28,7 @@
     </tr>
   </table>
 </div>
+
+## Скачать
+
+https://github.com/Alexey-Postnov888/Calculator/releases/tag/1.0.0
