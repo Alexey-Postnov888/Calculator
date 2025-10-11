@@ -2,15 +2,12 @@ package ru.alexeypostnov.calculator
 
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.color.DynamicColors
 import dev.androidbroadcast.vbpd.viewBinding
-import ru.alexeypostnov.calculator.databinding.ActivityMainBinding
 import ru.alexeypostnov.calculator.databinding.FragmentButtonsBinding
 
 class ButtonsFragment : Fragment(R.layout.fragment_buttons) {
@@ -38,7 +35,12 @@ class ButtonsFragment : Fragment(R.layout.fragment_buttons) {
 
         when (button.tag) {
             "number" -> viewModel.onNumberClick(button.text.toString())
-            "operator" -> viewModel.onOperatorClick(button.text.toString())
+            "operator" -> {
+                when (button.id) {
+                    binding.powBtn.id -> viewModel.onOperatorClick("^")
+                    else -> viewModel.onOperatorClick(button.text.toString())
+                }
+            }
             "function" -> handleFunctionClick(button.id)
             "parenthesis" -> viewModel.onParenthesisOnClick()
         }

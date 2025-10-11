@@ -24,17 +24,25 @@ class CalculatorViewModel : ViewModel() {
         DIVIDE,
         SEPARATOR,
         OPEN_BRACKET,
-        CLOSE_BRACKET
+        CLOSE_BRACKET,
+        POW
+    }
+
+    fun String.unescape(): String {
+        return this.replace("\\\\u([0-9a-fA-F]{4})".toRegex()) {
+            it.groupValues[1].toInt(16).toChar().toString()
+        }
     }
 
     private val operators = mapOf(
-        OperatorType.PLUS to OperatorInfo("+", "+"),
-        OperatorType.MINUS to OperatorInfo("-", "-"),
-        OperatorType.MULTIPLY to OperatorInfo("×", "*"),
-        OperatorType.DIVIDE to OperatorInfo("/", "/"),
+        OperatorType.PLUS to OperatorInfo("\\u002B".unescape(), "+"),
+        OperatorType.MINUS to OperatorInfo("\\u2212".unescape(), "-"),
+        OperatorType.MULTIPLY to OperatorInfo("\\u00D7".unescape(), "*"),
+        OperatorType.DIVIDE to OperatorInfo("\\u00F7".unescape(), "/"),
         OperatorType.SEPARATOR to OperatorInfo(".", "."),
-        OperatorType.OPEN_BRACKET to OperatorInfo("(", "("),
-        OperatorType.CLOSE_BRACKET to OperatorInfo(")", ")")
+        OperatorType.OPEN_BRACKET to OperatorInfo("\\u0028".unescape(), "("),
+        OperatorType.CLOSE_BRACKET to OperatorInfo("\\u0029".unescape(), ")"),
+        OperatorType.POW to OperatorInfo("^", "^")
     )
 
     private val allDisplaySymbols by lazy {
