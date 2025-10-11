@@ -53,4 +53,5 @@ dependencies {
     implementation("androidx.core:core:1.17.0")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
     implementation("net.objecthunter:exp4j:0.4.8")
+    implementation("dev.androidbroadcast.vbpd:vbpd:2.0.4")
 }

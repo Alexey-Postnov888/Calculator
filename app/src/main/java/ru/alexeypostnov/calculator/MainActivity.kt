@@ -9,13 +9,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import com.google.android.material.color.DynamicColors
+import dev.androidbroadcast.vbpd.viewBinding
 import ru.alexeypostnov.calculator.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    private val binding: ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
-
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
     private val viewModel: CalculatorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             binding.displayTxtview.text = newText
         })
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

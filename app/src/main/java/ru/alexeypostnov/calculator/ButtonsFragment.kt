@@ -9,27 +9,17 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.color.DynamicColors
+import dev.androidbroadcast.vbpd.viewBinding
+import ru.alexeypostnov.calculator.databinding.ActivityMainBinding
 import ru.alexeypostnov.calculator.databinding.FragmentButtonsBinding
 
-class ButtonsFragment : Fragment() {
-    private var _binding: FragmentButtonsBinding? = null
-    private val binding: FragmentButtonsBinding
-        get() = requireNotNull(_binding)
-
+class ButtonsFragment : Fragment(R.layout.fragment_buttons) {
+    private val binding: FragmentButtonsBinding by viewBinding(FragmentButtonsBinding::bind)
     private val viewModel: CalculatorViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(requireActivity())
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentButtonsBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,10 +50,5 @@ class ButtonsFragment : Fragment() {
             R.id.backspaceBtn -> viewModel.onBackspaceClick()
             R.id.equalsBtn -> viewModel.calculate()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
