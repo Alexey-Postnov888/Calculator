@@ -28,7 +28,7 @@ class CalculatorViewModel : ViewModel() {
         POW
     }
 
-    fun String.unescape(): String {
+    private fun String.unescape(): String {
         return this.replace("\\\\u([0-9a-fA-F]{4})".toRegex()) {
             it.groupValues[1].toInt(16).toChar().toString()
         }
