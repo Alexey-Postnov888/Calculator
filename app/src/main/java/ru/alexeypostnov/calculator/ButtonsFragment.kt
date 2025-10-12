@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Button
-import androidx.annotation.FontRes
-import androidx.core.content.res.FontResourcesParserCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels

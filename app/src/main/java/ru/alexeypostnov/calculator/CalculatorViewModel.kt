@@ -93,8 +93,15 @@ class CalculatorViewModel : ViewModel() {
         }
 
         val lastChar = currentInput[currentInput.length - 1].toString()
+        val openBracket = operators[OperatorType.OPEN_BRACKET]?.computationSymbol
+
+        if (lastChar == openBracket && operatorType != OperatorType.MINUS) return
 
         if (lastChar == operator) return
+
+        if (currentInput.length == 1 && operatorType != OperatorType.MINUS && allDisplaySymbols.contains(lastChar)) return
+
+        if (currentInput.length >= 2 && allDisplaySymbols.contains(lastChar) && currentInput[currentInput.length - 2].toString() == openBracket) return
 
         if (allDisplaySymbols.contains(lastChar)) {
             currentInput.deleteCharAt(currentInput.length - 1)
