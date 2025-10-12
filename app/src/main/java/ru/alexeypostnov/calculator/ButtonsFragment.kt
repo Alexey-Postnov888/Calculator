@@ -18,8 +18,8 @@ class ButtonsFragment : Fragment(R.layout.fragment_buttons) {
     private val viewModel: CalculatorViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(requireActivity())
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

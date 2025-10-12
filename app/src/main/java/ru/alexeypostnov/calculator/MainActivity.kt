@@ -17,18 +17,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val viewModel: CalculatorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         DynamicColors.applyToActivityIfAvailable(this)
 
-        // Подключаем шрифт из кода, ибо из xml не работает
+        super.onCreate(savedInstanceState)
+
+        setContentView(binding.root)
+        enableEdgeToEdge()
 
         val typeface = ResourcesCompat.getFont(this, R.font.comfortaa)
         binding.displayTxtview.typeface = typeface
         binding.appTitle.typeface = typeface
-
-        enableEdgeToEdge()
-        setContentView(binding.root)
 
         viewModel.displayText.observe(this, Observer { newText ->
             binding.displayTxtview.text = newText
